@@ -176,9 +176,11 @@ function genera_tabla() {
 const grafo = new grafoDirigido()
 integrarGraf();
 actualizarNombre();
-const subirPadre = [];
-const subirHijos = [];
-const subirContador = [];
+function declaracion(){
+    const subirPadre = [];
+    const subirHijos = [];
+    const subirContador = [];
+}
 
 function integrarGraf() {
     let nombree = localStorage.getItem("nombrealumno");
