@@ -110,6 +110,35 @@
                     <div class="container">
                         <img id="image2">
                     </div>
+                    <div class="container">
+                        <div class="mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Emisor</span>
+                                <input type="text" class="form-control" placeholder="201700000" id="emisor">
+                                <span class="input-group-text">Receptor</span>
+                                <input type="text" class="form-control" placeholder="201700001" id="receptor">
+                            </div>
+                        <div class="mb-3">
+                            <span class="input-group-text">Mensaje</span>
+                            <textarea type="text" class="form-control" id="mensaje"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-outline-secondary" type="button" id="enviar">Enviar Mensaje</button>
+                            <button class="btn btn-outline-secondary" type="button" id="reporte">Mostrar Bloques</button>
+                        </div>
+                        <div class="mb-3">
+                            <span class="input-group-text">Reporte</span>
+                            <textarea  readonly="readonly" rows="8" type="text" class="form-control" id="reporte-bloques"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-outline-secondary" type="button" id="anterior-bloque">Bloque Anterior</button>
+                            <button class="btn btn-outline-secondary" type="button" id="siguiente-bloque">Bloque Siguiente</button> 
+                        </div>
+                        <div class="mb-3">
+                            <span class="input-group-text">Mensaje Desencriptado</span>
+                            <textarea  readonly="readonly" rows="8" type="text" class="form-control" id="reporte-mensajes"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,6 +173,7 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="Matriz.js"></script>
     <script src="Permisos.js"></script>
+    <script type = "module" src="bloques.js"></script>
 
 </body>
 

@@ -127,7 +127,7 @@ class TablaHash {
 
 
     genera_tabla() {
-        var body = document.getElementsByTagName("body2")[0];
+        var body = document.getElementById("tabla-alumnos1");
         var divtable = document.createElement("div");
         var tabla = document.createElement("table");
         var tblBody = document.createElement("tbody");
@@ -208,7 +208,7 @@ export const tablaHash = new TablaHash()
 tablaPermisos();
 
 function tablaPermisos() {
-    var body = document.getElementsByTagName("body3")[0];
+    var body = document.getElementsByTagName("body")[0];
     var divtable = document.createElement("div");
     var tabla = document.createElement("table");
     var tblBody = document.createElement("tbody");
@@ -251,7 +251,7 @@ function tablaPermisos() {
             const permisocarnetsplit = permisocarnetlen.split(",");
             const filenamesplit = filenamelen.split(",");
             const permisosplit = permisolen.split(",");
-            
+
             for (let j = 0; j < filenamesplit.length; j++) {
                 const fila = document.createElement("tr");
                 const celda_propietario = document.createElement("td");

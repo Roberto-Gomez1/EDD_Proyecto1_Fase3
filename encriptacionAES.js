@@ -4,7 +4,7 @@ const view = new Uint8Array(buffer)
 for(let i = 0; i < clave.length; i++){
     view[i] = clave.charCodeAt(i)
 }
-
+/** Guardar la variable view y guardar algoritmos*/
 const iv = crypto.getRandomValues(new Uint8Array(16))
 const algoritmo = {name: 'AES-GCM', iv: iv}
 
