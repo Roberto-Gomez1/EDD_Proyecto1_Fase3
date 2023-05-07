@@ -197,11 +197,11 @@ function integrarGraf() {
     genera_tabla();
     refrescarGrafo();
 }
-
+const subirPadre = [];
+const subirHijos = [];
+const subirContador = [];
 function insertar() {
-    const subirPadre = [];
-    const subirHijos = [];
-    const subirContador = [];
+
     let padre = document.getElementById("padre").value;
     let hijos = document.getElementById("hijos").value;
     let nombree = localStorage.getItem("nombrealumno");
