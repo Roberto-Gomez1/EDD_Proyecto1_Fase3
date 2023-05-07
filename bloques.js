@@ -60,8 +60,9 @@ class Bloque{
     }
 }
 
-const bloque = new Bloque()
+export const bloque = new Bloque()
 let bloque_actual
+
 
 function fechaActual(){
     let cadena = ''
@@ -76,36 +77,73 @@ function fechaActual(){
 
 }
 
+
 const btnEnviar = document.getElementById("enviar")
 btnEnviar.addEventListener("click", enviarMensaje)
 
+const emisor =[] 
+const receptor = []
+const mensaje = []
+const fecha = []
 function enviarMensaje(){
+    let aux_emisor=[]
+    let aux_receptor=[]
+    let aux_mensaje=[]
     let emisor_mensaje =  document.getElementById("emisor").value
     let receptor_mensaje = document.getElementById("receptor").value
     let mensaje_final = document.getElementById("mensaje").value
+    let fecha_mensaje = fechaActual()
+    aux_emisor.push(emisor_mensaje)
+    aux_receptor.push(receptor_mensaje)
+    aux_mensaje.push(mensaje_final)
+    emisor.push(aux_emisor)
+    receptor.push(aux_receptor)
+    mensaje.push(aux_mensaje)
+    fecha.push(fecha_mensaje)
+    localStorage.setItem("emisor", JSON.stringify(emisor))
+    localStorage.setItem("receptor", JSON.stringify(receptor))
+    localStorage.setItem("mensaje", JSON.stringify(mensaje))
+    localStorage.setItem("fecha", JSON.stringify(fecha))
     bloque.insertarBloque(fechaActual(),emisor_mensaje,receptor_mensaje,mensaje_final)
-    console.log("Mensaje Enviado")
 }
-
-/** REPORTES */
 
 const btnReporte = document.getElementById("reporte")
 btnReporte.addEventListener("click", reporte)
 
-function reporte(){
-    bloque_actual = bloque.inicio
-    if(bloque_actual != null){
-        let cadena = "Index: " + bloque_actual.valor['index']
-        cadena += "\nTimeStamp: " + bloque_actual.valor['timestamp']
-        cadena += "\nEmisor: " + bloque_actual.valor['transmitter']
-        cadena += "\nReceptor: " + bloque_actual.valor['receiver']
-        cadena += "\nMensaje: " + bloque_actual.valor['message']
-        cadena += "\nPreviousHash: " + bloque_actual.valor['previoushash']
-        cadena += "\nHash: " + bloque_actual.valor['hash']
-        document.getElementById("reporte-bloques").value = cadena
-        mostrar_Mensaje_descriptado()
+let cadenagrafo = ''
+let cnt = 0
+let grafolista = []
+
+function reporte() {
+  bloque_actual = bloque.inicio
+  if (bloque_actual != null) {
+    let cadena = "Index: " + bloque_actual.valor['index']
+    cadena += "\nTimeStamp: " + bloque_actual.valor['timestamp']
+    cadena += "\nEmisor: " + bloque_actual.valor['transmitter']
+    cadena += "\nReceptor: " + bloque_actual.valor['receiver']
+    cadena += "\nMensaje: " + bloque_actual.valor['message']
+    cadena += "\nPreviousHash: " + bloque_actual.valor['previoushash']
+    cadena += "\nHash: " + bloque_actual.valor['hash']
+    document.getElementById("reporte-bloques").value = cadena
+    mostrar_Mensaje_descriptado()
+  }
+
+  bloque_actual = bloque.inicio
+  if (bloque_actual != null) {
+    cadenagrafo += `n${cnt}[label="TimeStamp=${bloque_actual.valor['timestamp']} \n Emisor: ${bloque_actual.valor['transmitter']}\n Receptor: ${bloque_actual.valor['receiver']}\n PreviousHash: ${bloque_actual.valor['previoushash']}"],\n`;
+    if (bloque_actual.siguiente !== null) {
+      cadenagrafo += "n" + cnt + "->" + "n" + (cnt + 1) + ";\n"
     }
+    cnt++
+    bloque_actual = bloque_actual.siguiente
+  }
+
+  let grafoaux = []
+  grafoaux.push(cadenagrafo)
+  grafolista.push(grafoaux)
+  localStorage.setItem("grafoBloc", (grafolista))
 }
+
 
 const btnReporte1 = document.getElementById("siguiente-bloque")
 btnReporte1.addEventListener("click", reporte_siguente)
@@ -144,20 +182,6 @@ function reporte_anterior(){
 }
 
 async function mostrar_Mensaje_descriptado(){ 
-    /** if carnet ==  bloque_actual.valor['receiver'] y  bloque_actual.valor['trasmitter'] == emisor
-     * mostrar mensaje
-     * bloque_actual = abloque_actual.siguiente
-     */
     let cadena =  await desencriptacion(bloque_actual.valor['message'])
     document.getElementById("reporte-mensajes").value = cadena
 }
-
-/**
- * Una funcion que lea todo los bloques y simplemente muestre el mensaje
- * al usuario final
- * bloque_actual.valor['receiver'] == 201700918
- * mensaje de  bloque_actual.valor['trasmitter']
- *  ( mensaje_descriptado(carnet, emisor) )
- * 201700918
- * 
- */

@@ -8,6 +8,7 @@ class Alumno {
     }
 }
 
+
 import { tablaHash } from "./Tabla.js";
 let alumnos = [];
 async function cargaAlumnos(e) {

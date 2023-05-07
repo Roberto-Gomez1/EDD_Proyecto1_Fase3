@@ -206,6 +206,35 @@ class TablaHash {
 
 export const tablaHash = new TablaHash()
 tablaPermisos();
+blocChain();
+
+function blocChain(){
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let traergrafo = localStorage.getItem("grafoBloc");
+    let traergrafosplit = traergrafo.split("}");
+    let body = 'digraph G{\n';
+    body += 'node[shape=rectangle style=filled];\n';
+    body += 'label="BlockChain";\n';
+    body += 'labelloc=t;\n';
+    body += 'rankdir=TB;\n';
+    for (let i = 0; i < traergrafosplit.length; i++) {
+         body += traergrafosplit[i];
+    }
+    body += "}";
+    
+    // Esperar a que la página se haya cargado completamente
+    document.addEventListener('DOMContentLoaded', function() {
+      let image = document.getElementById("image");
+      if (image) {
+        image.setAttribute("src", url + body);
+        localStorage.setItem("grafo", body);
+      } else {
+        console.log("No se encontró el elemento con el ID 'image'.");
+      }
+    });
+}
+
+
 
 function tablaPermisos() {
     var body = document.getElementsByTagName("body")[0];
