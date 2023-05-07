@@ -30,12 +30,12 @@ async function cargaAlumnos(e) {
             let pass_en = await tablaHash.sha256(alumnos[i].contraseña)
             tablaHash.insertar(alumnos[i].carnet, alumnos[i].nombre, pass_en);
         }
-        console.log(tablaHash.tabla)
         tablaHash.genera_tabla()
         localStorage.setItem("alumnos", JSON.stringify(alumnos));
     }
     lector.readAsText(archivo);
 }
+
 
 function agregarEventos() {
     document.getElementById("carga_alumnos").addEventListener("change", cargaAlumnos, false);

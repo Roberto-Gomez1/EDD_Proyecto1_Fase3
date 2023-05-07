@@ -61,32 +61,6 @@ class grafoDirigido {
     }
 
 
-    buscar(valor) {
-        let arreglo = []
-        if (valor === "/") {
-            let aux = this.principal
-            while (aux) {
-                arreglo.push(aux.valor)
-                aux = aux.siguiente
-            }
-            return arreglo
-        } else {
-            let aux = this.principal
-            while (aux) {
-                if (aux.valor === valor) {
-                    aux = aux.siguiente
-                    while (aux) {
-                        arreglo.push(aux.valor)
-                        aux = aux.siguiente
-                    }
-                    return arreglo
-                }
-                aux = aux.abajo
-            }
-        }
-
-
-    }
 
     //Reporte modificado para trabajar con carpetas
     grafica() {
@@ -123,7 +97,12 @@ function genera_tabla() {
     let hijos1 = hijos.split(',');
     let contador1 = contador.split(',');
     var body = document.getElementsByTagName("body2")[0];
+    var tablaAnterior = document.getElementById("tablaPadreHijo");
+    if (tablaAnterior) {
+        body.removeChild(tablaAnterior);
+    }
     var tabla = document.createElement("table");
+    tabla.setAttribute("id", "tablaPadreHijo");
     tabla.style.width = "300%"; // Ancho de la tabla
     tabla.style.height = "200px"; // Altura de la tabla
     var tblBody = document.createElement("tbody");
@@ -173,6 +152,7 @@ function genera_tabla() {
 }
 
 
+
 const grafo = new grafoDirigido()
 integrarGraf();
 actualizarNombre();
@@ -192,6 +172,7 @@ function integrarGraf() {
         const hijosEndIndex = hijosStartIndex + hijosCount;
         for (let j = hijosStartIndex; j < hijosEndIndex; j++) {
             grafo.insertarValores(padre1[i], hijos1[j]);
+            
         }
     }
     genera_tabla();

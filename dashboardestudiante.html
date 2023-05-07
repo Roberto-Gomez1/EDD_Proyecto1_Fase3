@@ -76,8 +76,6 @@
                         <div class="input-group mb-3">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon1"
                                 onclick="insertar()">Agregar Carpeta</button>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon1"
-                                onclick="insertar()">Eliminar carpeta</button>
                             <input type="text" id="padre" class="form-control" placeholder="Ej. /Documentos"
                                 aria-label="Example text with button addon" aria-describedby="button-addon1">
                             <input type="text" id="hijos" class="form-control" placeholder="Ej. usac,practicas"
@@ -90,13 +88,27 @@
                             <input type="file" id="input" multiple />
                         </div>
 
-                        
+
                     </div>
                     <div class="row" id="tabla-container">
                         <body2></body2>
                     </div>
                     <div class="container">
                         <img id="image">
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1"
+                            onclick="cargarArchivo()">Cargar Archivo</button>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1"
+                            onclick="asignarPermisos()">Asignar Permisos</button>
+                        <input type="text" id="permiso" class="form-control" placeholder="Ej. arhivo.png-201700918-rw"
+                            aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <input type="file" id="input2" multiple />
+                    </div>
+                    <div class="container">
+                        <img id="image2">
                     </div>
                 </div>
             </div>
@@ -130,7 +142,8 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
-    <script type="module" src="Matriz.js"></script>
+    <script src="Matriz.js"></script>
+    <script src="Permisos.js"></script>
 
 </body>
 
