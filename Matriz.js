@@ -142,24 +142,24 @@ function genera_tabla() {
         const hijosCount = parseInt(contador1[i]);
         const hijosStartIndex = i > 0 ? parseInt(contador1.slice(0, i).reduce((a, b) => parseInt(a) + parseInt(b))) : 0;
         const hijosEndIndex = hijosStartIndex + hijosCount;
-      
+
         var hilera = document.createElement("tr");
-        
+
         var celda = document.createElement("td");
         var textoCelda = document.createTextNode(padre1[i]);
         celda.appendChild(textoCelda);
         hilera.appendChild(celda);
-      
+
         var celda = document.createElement("td");
         for (let j = hijosStartIndex; j < hijosEndIndex; j++) {
-          var textoCelda = document.createTextNode(hijos1[j] + ", ");
-          celda.appendChild(textoCelda);
+            var textoCelda = document.createTextNode(hijos1[j] + ", ");
+            celda.appendChild(textoCelda);
         }
         hilera.appendChild(celda);
-      
+
         tblBody.appendChild(hilera);
-      }
-      
+    }
+
     tabla.appendChild(tblBody);
     body.appendChild(tabla);
     tabla.setAttribute("border", "2");
@@ -175,9 +175,10 @@ function genera_tabla() {
 
 const grafo = new grafoDirigido()
 integrarGraf();
+actualizarNombre();
 const subirPadre = [];
 const subirHijos = [];
-const subirContador =[];
+const subirContador = [];
 
 function integrarGraf() {
     let nombree = localStorage.getItem("nombrealumno");
@@ -192,7 +193,7 @@ function integrarGraf() {
         const hijosStartIndex = i > 0 ? parseInt(contador1.slice(0, i).reduce((a, b) => parseInt(a) + parseInt(b))) : 0;
         const hijosEndIndex = hijosStartIndex + hijosCount;
         for (let j = hijosStartIndex; j < hijosEndIndex; j++) {
-            grafo.insertarValores(padre1[i],hijos1[j]);
+            grafo.insertarValores(padre1[i], hijos1[j]);
         }
     }
     genera_tabla();
@@ -204,8 +205,8 @@ function insertar() {
     let hijos = document.getElementById("hijos").value;
     let nombree = localStorage.getItem("nombrealumno");
     let subirHijos1 = [];
-    let auxiliar=hijos.split(',');
-    for(let i=0;i<auxiliar.length;i++){
+    let auxiliar = hijos.split(',');
+    for (let i = 0; i < auxiliar.length; i++) {
         subirHijos1.push(auxiliar[i]);
     }
     subirPadre.push(padre);
@@ -225,6 +226,13 @@ inputElement.addEventListener("change", onChange, false);
 function onChange(event) {
     let varr = event.target.files[0].name;
     document.getElementById("hijos").value = varr;
+}
+
+
+function actualizarNombre() {
+    const nombreAlumno = localStorage.getItem('nombrealumno');
+    const nombreAlumnoElement = document.getElementById('nombrealumno');
+    nombreAlumnoElement.textContent = nombreAlumno;
 }
 
 
